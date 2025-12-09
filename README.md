@@ -53,6 +53,7 @@ This project uses a unified deployment on Vercel - both the frontend (HTML/CSS/J
 3. Set Environment Variables (in Vercel Dashboard)
    - Go to Project Settings → Environment Variables
    - Add the following:
+     - `RECIPIENT_EMAIL` - Your email address (where contact form messages are sent)
      - `MAILGUN_API_KEY`
      - `MAILGUN_DOMAIN`
      - `MAILGUN_SMTP_USER`
@@ -78,6 +79,7 @@ This project uses a unified deployment on Vercel - both the frontend (HTML/CSS/J
 
    Create a `.env` file in the root folder:
    ```env
+   RECIPIENT_EMAIL=santoshraj8002444@gmail.com
    MAILGUN_SMTP_USER=your-email@your-domain.mailgun.org
    MAILGUN_SMTP_PASSWORD=your-smtp-password
    MAILGUN_API_KEY=your-api-key

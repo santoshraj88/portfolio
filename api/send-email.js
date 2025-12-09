@@ -9,6 +9,7 @@ const mg = mailgun.client({
 });
 
 const MAILGUN_DOMAIN = process.env.MAILGUN_DOMAIN;
+const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL;
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.mailgun.org',
@@ -48,7 +49,7 @@ module.exports = async (req, res) => {
 
     const emailData = {
         from: `"${name}" <santosh@${MAILGUN_DOMAIN}>`,
-        to: `santosh@${MAILGUN_DOMAIN}`,
+        to: RECIPIENT_EMAIL,
         'h:Reply-To': email,
         subject: `Portfolio Contact: ${subject}`,
         html: `
@@ -103,7 +104,7 @@ module.exports = async (req, res) => {
         // Try SMTP first
         const mailOptions = {
             from: `"${name}" <santosh@${MAILGUN_DOMAIN}>`,
-            to: `santosh@${MAILGUN_DOMAIN}`,
+            to: RECIPIENT_EMAIL,
             replyTo: email,
             subject: `Portfolio Contact: ${subject}`,
             html: emailData.html
