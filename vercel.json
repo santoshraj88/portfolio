@@ -1,8 +1,7 @@
 {
-  "rewrites": [
-    {
-      "source": "/api/send-email",
-      "destination": "/send-email"
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 10
     }
-  ]
+  }
 }
