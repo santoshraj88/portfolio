@@ -259,24 +259,29 @@ function showMessage(message, type = 'success') {
 }
 
 // ===== PROJECT IMAGE FALLBACK =====
-document.querySelectorAll('.project-image img').forEach(img => {
-    // When image loads successfully, show the image and hide the fallback icon
-    img.addEventListener('load', function() {
-        this.style.display = 'block';
-        const fallbackIcon = this.nextElementSibling;
-        if (fallbackIcon && fallbackIcon.classList.contains('fallback-icon')) {
-            fallbackIcon.style.display = 'none';
-        }
-    });
+document.querySelectorAll('.project-image').forEach(container => {
+    const img = container.querySelector('img');
+    const fallbackIcon = container.querySelector('.fallback-icon');
     
-    // When image fails to load, hide the image and show the fallback icon
-    img.addEventListener('error', function() {
-        this.style.display = 'none';
-        const fallbackIcon = this.nextElementSibling;
-        if (fallbackIcon && fallbackIcon.classList.contains('fallback-icon')) {
+    if (!img || !fallbackIcon) return;
+    
+    // Check if image has a src attribute
+    if (!img.src || img.src === '' || img.src === window.location.href) {
+        // No src, show fallback icon
+        img.style.display = 'none';
+        fallbackIcon.style.display = 'block';
+    } else {
+        // Has src, try to load it
+        img.addEventListener('load', function() {
+            this.style.display = 'block';
+            fallbackIcon.style.display = 'none';
+        });
+        
+        img.addEventListener('error', function() {
+            this.style.display = 'none';
             fallbackIcon.style.display = 'block';
-        }
-    });
+        });
+    }
 });
 
 // ===== INITIALIZE ON LOAD =====
