@@ -667,6 +667,10 @@ section {
   .projects-container {
     grid-template-columns: 1fr;
   }
+  
+  .project-image {
+    height: 200px;
+  }
 
   .input-group {
     grid-template-columns: 1fr;
@@ -709,6 +713,14 @@ section {
 
   .home-img img {
     max-width: 250px;
+  }
+  
+  .project-image {
+    height: 200px;
+  }
+  
+  .project-image img {
+    object-fit: cover;
   }
 }
 /* ===== FORM VALIDATION STATES ===== */
