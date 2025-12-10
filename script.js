@@ -173,7 +173,7 @@ if (contactForm) {
 // ===== TYPING ANIMATION =====
 const typedTextSpan = document.querySelector('.typed-text');
 if (typedTextSpan) {
-    const textArray = ['Web Developer', 'UI/UX Designer', 'Frontend Developer', 'Problem Solver'];
+    const textArray = ['Web Developer', 'Problem Solver'];
     const typingDelay = 100;
     const erasingDelay = 50;
     const newTextDelay = 2000;
@@ -257,6 +257,27 @@ function showMessage(message, type = 'success') {
         }, 300);
     }, 5000);
 }
+
+// ===== PROJECT IMAGE FALLBACK =====
+document.querySelectorAll('.project-image img').forEach(img => {
+    // When image loads successfully, show the image and hide the fallback icon
+    img.addEventListener('load', function() {
+        this.style.display = 'block';
+        const fallbackIcon = this.nextElementSibling;
+        if (fallbackIcon && fallbackIcon.classList.contains('fallback-icon')) {
+            fallbackIcon.style.display = 'none';
+        }
+    });
+    
+    // When image fails to load, hide the image and show the fallback icon
+    img.addEventListener('error', function() {
+        this.style.display = 'none';
+        const fallbackIcon = this.nextElementSibling;
+        if (fallbackIcon && fallbackIcon.classList.contains('fallback-icon')) {
+            fallbackIcon.style.display = 'block';
+        }
+    });
+});
 
 // ===== INITIALIZE ON LOAD =====
 window.addEventListener('load', () => {
